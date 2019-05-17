@@ -28,8 +28,12 @@ Create table workout_active
     end_time time,
     comment varchar(64),
     status bit,
-	constraint fk_workout_active_workout_Collection foreign key(workout_id) references workout_Collection(workout_id)
+	constraint fk_workout_active_workout_Collection foreign key(workout_id) references workout_Collection(workout_id),
+	names varchar(50) primary key
 	)
+	drop table workout_active
+
+
   
   select * from workout_Category
    select * from workout_Collection
