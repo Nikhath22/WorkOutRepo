@@ -10,9 +10,9 @@ namespace WorkOutWebAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
-            // Web API routes
             config.MapHttpAttributeRoutes();
+            // Web API routes
+            
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

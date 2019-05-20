@@ -66,6 +66,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkOutEMS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="workoutrep.cs" />
     <Compile Include="workout_active.cs">
       <DependentUpon>WorkOutEMS.tt</DependentUpon>
     </Compile>

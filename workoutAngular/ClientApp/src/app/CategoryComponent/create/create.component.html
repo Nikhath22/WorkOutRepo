@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-add-category (CategoryAdded)="SaveCategory($event)"></app-add-category>
+    </div>
+
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <th>category_id</th>
+          <th>Name</th>
+          
+          <th></th>
+        </tr>
+        <tr *ngFor="let cat of categories">
+          <td>{{cat.category_id}}</td>
+          <td>{{cat.Name}}</td>
+          
+          <td>
+            <a [routerLink]="['/edit-category',cat.id]">Edit</a>
+            <a [routerLink]="['/delete-category',cat.id]">Delete</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
