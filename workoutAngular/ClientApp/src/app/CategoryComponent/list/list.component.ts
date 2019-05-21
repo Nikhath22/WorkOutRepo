@@ -1,23 +1,34 @@
 
-import { Component } from '@angular/core';
-import { category } from '../Category';
+import { Component, OnInit } from '@angular/core';
+import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 import { WorkoutService } from '../workout.service';
+import { category } from '../Category';
 
 @Component({
-  selector: 'app-list-category',
-  templateUrl: './list-category.component.html',
-  styleUrls: ['./list-category.component.css']
+  selector: 'app-view-all-category',
+  templateUrl: './view-all-category.component.html',
+  styleUrls: ['./view-all-category.component.css']
 })
+export class ListCategoryComponent implements OnInit {
 
-export class ListComponent {
-  categories: category[];
+  Categories: category[]
   constructor(private service: WorkoutService) { }
 
   ngOnInit() {
     this.service.getAll().subscribe(
-      (data) => this.categories = data,
-      (error) => alert('Error processing request')
+      (data) => this.Categories = data,
+      (error) => console.log(error)
     );
   }
+
+  SaveCategory($event) {
+    console.log($event);
+    this.service.save(new category(0, $event)).subscribe(
+      (data) => alert('Added'),
+      (error) => alert("Failed to add")
+    );
+  }
+
+
 }
 

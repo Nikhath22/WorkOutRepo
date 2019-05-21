@@ -1,14 +1,32 @@
-﻿import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+
+import { category } from '../Category';
+import { WorkoutService } from '../workout.service';
+
 
 @Component({
-    selector: 'app-delete',
-    templateUrl: './delete.component.html',
-    styleUrls: ['./delete.component.css']
+  selector: 'app-delete-category',
+  templateUrl: './delete-category.component.html',
+  styleUrls: ['./delete-category.component.css']
 })
-/** Delete component*/
-export class DeleteComponent {
-    /** Delete ctor */
-    constructor() {
+/** delete-category component*/
+export class DeleteCategoryComponent implements OnInit {
+  Cate: category;
 
-    }
+  constructor(private currentRoute: ActivatedRoute, private service: WorkoutService) { }
+
+  ngOnInit() {
+    let id = this.currentRoute.snapshot.paramMap.get('id');
+    this.service.getById(id).subscribe(
+      (data) => this.Cate = data,
+      (error) => alert('Not found')
+    );
+  }
+  delete() {
+    this.service.delete(this.Cate.category_id).subscribe(
+      (data) => alert('Deleted'),
+      (error) => alert('Failed to delete'));
+  }
 }

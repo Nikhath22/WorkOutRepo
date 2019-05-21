@@ -19,14 +19,22 @@ namespace WorkOutWebAPI.Controllers
         }
         public IHttpActionResult Get(int? id)
         {
+            if (id < 0)
+            {
+                return BadRequest("Invalid Workout id");
+            }
             var data = db.workout_Category.Find(id);
+            if (data == null) {
+                return NotFound();
+                 }
             return Ok(data);
         }
 
         public IHttpActionResult Post(workout_Category obj)
         {
             db.workout_Category.Add(obj);
-            var objvar = db.SaveChanges();
+           
+            int objvar = db.SaveChanges();
             if (objvar > 0)
             {
                 return StatusCode(HttpStatusCode.Created);

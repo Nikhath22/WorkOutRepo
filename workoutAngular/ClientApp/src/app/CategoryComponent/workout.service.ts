@@ -5,7 +5,7 @@ import { category } from './Category';
 
 @Injectable()
 export class WorkoutService {
-  private _url = 'http://localhost:54344//api/WorkOutWebAPI';
+  private _url = 'http://localhost:55993/api/WorkOutApi';
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<category[]> {
@@ -24,7 +24,7 @@ export class WorkoutService {
     return this.http.put(this._url, dept);
   }
 
-  delete(id: string) {
+  delete(id: number) {
     return this.http.delete(this._url + `/${id}`);
   }
 
